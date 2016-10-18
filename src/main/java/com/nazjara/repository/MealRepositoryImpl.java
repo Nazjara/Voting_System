@@ -1,7 +1,9 @@
 package com.nazjara.repository;
 
 import com.nazjara.model.Meal;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class MealRepositoryImpl implements MealRepository
 {
     @Override

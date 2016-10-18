@@ -1,9 +1,11 @@
 package com.nazjara.repository;
 
 import com.nazjara.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class UserRepositoryImpl implements UserRepository {
 
     @Override

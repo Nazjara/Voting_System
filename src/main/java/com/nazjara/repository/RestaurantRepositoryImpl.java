@@ -1,9 +1,11 @@
 package com.nazjara.repository;
 
 import com.nazjara.model.Restaurant;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class RestaurantRepositoryImpl implements RestaurantRepository {
 
     @Override
