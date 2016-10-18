@@ -4,6 +4,8 @@ import java.util.Set;
 
 public class User extends BaseEntity
 {
+    public static final int START_SEQ = 1;
+
     private String email;
 
     private String password;
