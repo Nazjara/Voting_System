@@ -19,6 +19,11 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User update(User user) {
+        return null;
+    }
+
+    @Override
     public User get(Integer id) {
         return null;
     }

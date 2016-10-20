@@ -4,6 +4,7 @@ import com.nazjara.model.Restaurant;
 import com.nazjara.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -15,21 +16,28 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public int delete(int id) {
-        return 0;
+        return repository.delete(id);
     }
 
     @Override
-    public Restaurant save(Restaurant user) {
-        return null;
+    public Restaurant save(Restaurant restaurant) {
+        Assert.notNull(restaurant,"restaurant must not be null");
+        return repository.save(restaurant);
+    }
+
+    @Override
+    public Restaurant update(Restaurant restaurant) {
+        Assert.notNull(restaurant,"restaurant must not be null");
+        return repository.update(restaurant);
     }
 
     @Override
     public Restaurant get(Integer id) {
-        return null;
+        return repository.get(id);
     }
 
     @Override
     public List<Restaurant> getAll() {
-        return null;
+        return repository.getAll();
     }
 }

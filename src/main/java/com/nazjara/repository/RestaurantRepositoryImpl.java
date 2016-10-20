@@ -19,6 +19,11 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
     }
 
     @Override
+    public Restaurant update(Restaurant restaurant) {
+        return null;
+    }
+
+    @Override
     public Restaurant get(Integer id) {
         return null;
     }

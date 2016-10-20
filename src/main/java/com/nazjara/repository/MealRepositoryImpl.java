@@ -3,6 +3,8 @@ package com.nazjara.repository;
 import com.nazjara.model.Meal;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class MealRepositoryImpl implements MealRepository
 {
@@ -17,7 +19,12 @@ public class MealRepositoryImpl implements MealRepository
     }
 
     @Override
-    public Meal getAll() {
+    public Meal update(Meal meal) {
+        return null;
+    }
+
+    @Override
+    public List<Meal> getAll() {
         return null;
     }
 }

@@ -5,6 +5,9 @@ import com.nazjara.model.Meal;
 import com.nazjara.repository.MealRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+
+import java.util.List;
 
 @Service
 public class MealServiceImpl implements MealService {
@@ -14,16 +17,23 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public int delete(int id) {
-        return 0;
+        return repository.delete(id);
     }
 
     @Override
     public Meal save(Meal meal) {
-        return null;
+        Assert.notNull(meal,"meal must not be null");
+        return repository.save(meal);
     }
 
     @Override
-    public Meal getAll() {
-        return null;
+    public Meal update(Meal meal) {
+        Assert.notNull(meal,"meal must not be null");
+        return repository.update(meal);
+    }
+
+    @Override
+    public List<Meal> getAll() {
+        return repository.getAll();
     }
 }

@@ -11,7 +11,9 @@ public interface RestaurantService {
 
     int delete(int id);
 
-    Restaurant save(Restaurant user);
+    Restaurant save(Restaurant restaurant);
+
+    Restaurant update(Restaurant restaurant);
 
     Restaurant get(Integer id);
 

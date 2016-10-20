@@ -2,6 +2,8 @@ package com.nazjara.service;
 
 import com.nazjara.model.Meal;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 18.10.2016.
  */
@@ -11,5 +13,7 @@ public interface MealService {
 
     Meal save(Meal meal);
 
-    Meal getAll();
+    Meal update(Meal meal);
+
+    List<Meal> getAll();
 }
