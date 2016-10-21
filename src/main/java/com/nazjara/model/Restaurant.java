@@ -38,16 +38,6 @@ public class Restaurant extends BaseEntity
         this.votes = votes;
     }
 
-    public int incrementVotes()
-    {
-        return ++votes;
-    }
-
-    public int decrementVotes()
-    {
-        return ++votes;
-    }
-
     @Override
     public String toString() {
         return "Restaurant{" +
