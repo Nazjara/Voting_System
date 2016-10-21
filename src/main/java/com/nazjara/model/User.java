@@ -1,5 +1,6 @@
 package com.nazjara.model;
 
+import java.util.Date;
 import java.util.Set;
 
 public class User extends BaseEntity
@@ -10,11 +11,14 @@ public class User extends BaseEntity
 
     private String password;
 
+    private Date registered = new Date();
+
     private Set<Role> roles;
 
     private Restaurant restaurant;
 
     public User() {
+
     }
 
     public User(Integer id, String name, String email, String password, Set<Role> roles) {
@@ -54,5 +58,13 @@ public class User extends BaseEntity
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
+    }
+
+    public Date getRegistered() {
+        return registered;
+    }
+
+    public void setRegistered(Date registered) {
+        this.registered = registered;
     }
 }
