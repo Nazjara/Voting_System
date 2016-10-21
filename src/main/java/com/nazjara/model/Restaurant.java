@@ -1,13 +1,17 @@
 package com.nazjara.model;
 
+import javax.persistence.*;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
+@Entity
+@Table(name = "restaurants", uniqueConstraints = {@UniqueConstraint(columnNames = "name",name = "restaurants_unique_name_idx")})
 public class Restaurant extends BaseEntity
 {
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE, mappedBy = "restaurant")
     private List<Meal> menu;
 
-    private AtomicInteger voteCounter;
+    @Column(name = "votes", columnDefinition = "default 0")
+    private Integer votes;
 
     public Restaurant() {
     }
@@ -15,7 +19,7 @@ public class Restaurant extends BaseEntity
     public Restaurant(Integer id, String name, List<Meal> menu) {
         super(id, name);
         this.menu = menu;
-        this.voteCounter.set(0);
+        this.votes = 0;
     }
 
     public List<Meal> getMenu() {
@@ -26,29 +30,29 @@ public class Restaurant extends BaseEntity
         this.menu = menu;
     }
 
-    public int getVoteCounter() {
-        return voteCounter.get();
+    public int getVotes() {
+        return votes;
     }
 
-    public void setVoteCounter(int voteCounter) {
-        this.voteCounter = new AtomicInteger(voteCounter);
+    public void setVotes(int votes) {
+        this.votes = votes;
     }
 
-    public int incrementVoteCounter()
+    public int incrementVotes()
     {
-        return this.voteCounter.incrementAndGet();
+        return ++votes;
     }
 
-    public int decrementVoteCounter()
+    public int decrementVotes()
     {
-        return this.voteCounter.decrementAndGet();
+        return ++votes;
     }
 
     @Override
     public String toString() {
         return "Restaurant{" +
                 "menu=" + menu +
-                ", voteCounter=" + voteCounter +
+                ", votes=" + votes +
                 '}';
     }
 }

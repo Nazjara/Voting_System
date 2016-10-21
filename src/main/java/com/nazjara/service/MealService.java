@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface MealService {
 
-    int delete(int id);
+    void delete(int id);
 
     Meal save(Meal meal);
 

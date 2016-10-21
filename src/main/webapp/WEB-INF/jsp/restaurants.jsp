@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Restaurants</title>
@@ -6,17 +8,15 @@
 <body>
     <h2><a href="${pageContext.request.contextPath}/">Home</a></h2>
     <h3>Restaurant list</h3>
-    <h4>PizzaHut</h4>
-    <ul>
-        <li>Pizza 1 - 3.50$</li>
-        <li>Pizza 2 - 5.50$</li>
-        <li>Pizza 3 - 7.50$</li>
-    </ul>
-    <h4>SushiHut</h4>
-    <ul>
-        <li>Sushi 1 - 4.50$</li>
-        <li>Sushi 2 - 6.50$</li>
-        <li>Sushi 3 - 8.50$</li>
-    </ul>
+    <c:forEach items="${restaurants}" var="restaurant">
+        <jsp:useBean id="restaurant" scope="page" type="com.nazjara.model.Restaurant"/>
+        <h4>${restaurant.name} - ${restaurant.votes}</h4>
+        <ul>
+            <c:forEach items="${restaurant.menu}" var="meal">
+                <jsp:useBean id="meal" scope="page" type="com.nazjara.model.Meal"/>
+                    <li>${meal.name} - $${meal.price}</li>
+            </c:forEach>
+        </ul>
+    </c:forEach>
 </body>
 </html>

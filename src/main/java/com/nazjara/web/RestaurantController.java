@@ -13,14 +13,14 @@ public class RestaurantController {
     @Autowired
     private RestaurantService restaurantService;
 
-    @Autowired
-    private MealService mealService;
+//    @Autowired
+//    private MealService mealService;
 
     @RequestMapping(value = "/restaurants", method = RequestMethod.GET)
     public String getAllRestaurantsWithMeals(Model model)
     {
         model.addAttribute("restaurants",restaurantService.getAll());
-        model.addAttribute("meals",mealService.getAll());
+//        model.addAttribute("meals",mealService.getAll());
         return "restaurants";
     }
 }

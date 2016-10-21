@@ -37,7 +37,7 @@ CREATE TABLE user_roles
 CREATE TABLE meals (
   id      INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name    TEXT NOT NULL,
-  price   DOUBLE PRECISION NOT NULL,
+  price   NUMERIC NOT NULL,
   restaurant_id INTEGER NOT NULL,
   FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );

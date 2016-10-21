@@ -6,11 +6,9 @@ import java.util.List;
 
 public interface MealRepository {
 
-    int delete(int id);
-
     Meal save(Meal meal);
 
-    Meal update(Meal meal);
+    boolean delete(int id);
 
     List<Meal> getAll();
 }

@@ -1,6 +1,5 @@
 package com.nazjara.service;
 
-
 import com.nazjara.model.Meal;
 import com.nazjara.repository.MealRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,8 @@ public class MealServiceImpl implements MealService {
     private MealRepository repository;
 
     @Override
-    public int delete(int id) {
-        return repository.delete(id);
+    public void delete(int id) {
+         repository.delete(id);
     }
 
     @Override
@@ -29,7 +28,7 @@ public class MealServiceImpl implements MealService {
     @Override
     public Meal update(Meal meal) {
         Assert.notNull(meal,"meal must not be null");
-        return repository.update(meal);
+        return repository.save(meal);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.nazjara.service;
 
 import com.nazjara.model.Restaurant;
 import com.nazjara.repository.RestaurantRepository;
+import com.nazjara.repository.datajpa.DataJpaRestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -15,8 +16,8 @@ public class RestaurantServiceImpl implements RestaurantService {
     private RestaurantRepository repository;
 
     @Override
-    public int delete(int id) {
-        return repository.delete(id);
+    public void delete(int id) {
+        repository.delete(id);
     }
 
     @Override
@@ -28,7 +29,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public Restaurant update(Restaurant restaurant) {
         Assert.notNull(restaurant,"restaurant must not be null");
-        return repository.update(restaurant);
+        return repository.save(restaurant);
     }
 
     @Override

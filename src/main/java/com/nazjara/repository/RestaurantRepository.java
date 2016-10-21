@@ -4,13 +4,11 @@ import com.nazjara.model.Restaurant;
 
 import java.util.List;
 
-public interface RestaurantRepository
-{
-    int delete(int id);
+public interface RestaurantRepository {
+
+    boolean delete(int id);
 
     Restaurant save(Restaurant restaurant);
-
-    Restaurant update(Restaurant restaurant);
 
     Restaurant get(Integer id);
 
