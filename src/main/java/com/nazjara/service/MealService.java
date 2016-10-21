@@ -4,16 +4,13 @@ import com.nazjara.model.Meal;
 
 import java.util.List;
 
-/**
- * Created by Administrator on 18.10.2016.
- */
 public interface MealService {
 
     void delete(int id);
 
-    Meal save(Meal meal);
+    Meal save(Meal meal, int restaurantId);
 
-    Meal update(Meal meal);
+    Meal update(Meal meal, int restaurantId);
 
-    List<Meal> getAll();
+    List<Meal> getAll(int restaurantId);
 }

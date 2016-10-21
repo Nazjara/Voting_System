@@ -12,21 +12,28 @@ import java.util.List;
 public class DataJpaMealRepositoryImpl implements MealRepository
 {
     @Autowired
-    private DataJpaMealRepository repository;
+    private DataJpaMealRepository mealRepository;
+
+    @Autowired
+    private DataJpaRestaurantRepository restaurantRepository;
 
     @Override
     public boolean delete(int id) {
-        return repository.delete(id) != 0;
+        return mealRepository.delete(id) != 0;
     }
 
     @Override
     @Transactional
-    public Meal save(Meal meal) {
-        return repository.save(meal);
+    public Meal save(Meal meal, int restaurantId) {
+        if (!meal.isNew()) {
+            return null;
+        }
+        meal.setRestaurant(restaurantRepository.getOne(restaurantId));
+        return mealRepository.save(meal);
     }
 
     @Override
-    public List<Meal> getAll() {
-        return repository.findAll();
+    public List<Meal> getAll(int restaurantId) {
+        return mealRepository.getAll(restaurantId);
     }
 }

@@ -20,6 +20,6 @@ public interface DataJpaMealRepository extends JpaRepository<Meal,Integer> {
     @Override
     Meal save(Meal meal);
 
-    @Override
-    List<Meal> findAll();
+    @Query("SELECT m FROM Meal m WHERE m.restaurant.id=:restaurantId")
+    List<Meal> getAll (@Param("restaurantId") int restaurantId);
 }

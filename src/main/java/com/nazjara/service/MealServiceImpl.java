@@ -20,19 +20,19 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public Meal save(Meal meal) {
+    public Meal save(Meal meal, int restaurantId) {
         Assert.notNull(meal,"meal must not be null");
-        return repository.save(meal);
+        return repository.save(meal, restaurantId);
     }
 
     @Override
-    public Meal update(Meal meal) {
+    public Meal update(Meal meal, int restaurantId) {
         Assert.notNull(meal,"meal must not be null");
-        return repository.save(meal);
+        return repository.save(meal,restaurantId);
     }
 
     @Override
-    public List<Meal> getAll() {
-        return repository.getAll();
+    public List<Meal> getAll(int restaurant) {
+        return repository.getAll(restaurant);
     }
 }

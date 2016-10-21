@@ -16,9 +16,8 @@ public class Restaurant extends BaseEntity
     public Restaurant() {
     }
 
-    public Restaurant(Integer id, String name, List<Meal> menu) {
+    public Restaurant(Integer id, String name) {
         super(id, name);
-        this.menu = menu;
         this.votes = 0;
     }
 

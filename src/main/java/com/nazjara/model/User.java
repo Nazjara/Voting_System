@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.Set;
 
 @Entity
@@ -39,6 +40,14 @@ public class User extends BaseEntity
     public User() {
     }
 
+    public User(User u) {
+        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.getRoles());
+    }
+
+    public User(Integer id, String name, String email, String password, Role role, Role... roles) {
+        this(id, name, email, password, EnumSet.of(role, roles));
+    }
+
     public User(Integer id, String name, String email, String password, Set<Role> roles) {
         super(id, name);
         this.email = email;
@@ -62,7 +71,7 @@ public class User extends BaseEntity
         this.password = password;
     }
 
-    public Set getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 

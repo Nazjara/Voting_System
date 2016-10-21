@@ -18,4 +18,6 @@ public interface RestaurantService {
     Restaurant get(Integer id);
 
     List<Restaurant> getAll();
+
+    void addVote(int restaurantId);
 }

@@ -18,4 +18,6 @@ public class UserController {
         model.addAttribute("users",service.getAll());
         return "users";
     }
+
+
 }

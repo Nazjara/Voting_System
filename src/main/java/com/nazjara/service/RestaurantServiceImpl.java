@@ -2,7 +2,6 @@ package com.nazjara.service;
 
 import com.nazjara.model.Restaurant;
 import com.nazjara.repository.RestaurantRepository;
-import com.nazjara.repository.datajpa.DataJpaRestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -40,5 +39,10 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public List<Restaurant> getAll() {
         return repository.getAll();
+    }
+
+    @Override
+    public void addVote(int restaurantId) {
+        //have to implement
     }
 }
