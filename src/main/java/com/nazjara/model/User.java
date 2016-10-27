@@ -1,5 +1,6 @@
 package com.nazjara.model;
 
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -7,6 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.Collection;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.Set;
@@ -18,24 +20,26 @@ public class User extends BaseEntity
     @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotEmpty
-    private String email;
+    protected String email;
 
     @Column(name = "password", nullable = false)
     @NotEmpty
     @Length(min = 5)
-    private String password;
+    protected String password;
 
     @Column(name = "registered", columnDefinition = "timestamp default now()")
-    private Date registered = new Date();
+    protected Date registered = new Date();
 
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
-    @ElementCollection(fetch = FetchType.LAZY)
-    private Set<Role> roles;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @BatchSize(size = 200)
+    protected Set<Role> roles;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Restaurant restaurant;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    protected Restaurant restaurant;
 
     public User() {
     }
@@ -44,8 +48,8 @@ public class User extends BaseEntity
         this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.getRoles());
     }
 
-    public User(Integer id, String name, String email, String password, Role role, Role... roles) {
-        this(id, name, email, password, EnumSet.of(role, roles));
+    public User(Integer id, String name, String email, String password, Role role, Role...roles) {
+        this(id, name, email, password, EnumSet.of(role,roles));
     }
 
     public User(Integer id, String name, String email, String password, Set<Role> roles) {
@@ -75,17 +79,17 @@ public class User extends BaseEntity
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRoles(Collection<Role> roles) {
+        this.roles = EnumSet.copyOf(roles);
     }
 
-//    public Restaurant getRestaurant() {
-//        return restaurant;
-//    }
-//
-//    public void setRestaurant(Restaurant restaurant) {
-//        this.restaurant = restaurant;
-//    }
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 
     public Date getRegistered() {
         return registered;

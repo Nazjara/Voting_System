@@ -7,18 +7,17 @@ import java.util.List;
 @Table(name = "restaurants", uniqueConstraints = {@UniqueConstraint(columnNames = "name",name = "restaurants_unique_name_idx")})
 public class Restaurant extends BaseEntity
 {
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE, mappedBy = "restaurant")
-    private List<Meal> menu;
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE, mappedBy = "restaurant")
+    protected List<Meal> menu;
 
-    @Column(name = "votes", columnDefinition = "default 0")
-    private Integer votes;
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE, mappedBy = "restaurant")
+    protected List<User> users;
 
     public Restaurant() {
     }
 
     public Restaurant(Integer id, String name) {
         super(id, name);
-        this.votes = 0;
     }
 
     public List<Meal> getMenu() {
@@ -29,19 +28,19 @@ public class Restaurant extends BaseEntity
         this.menu = menu;
     }
 
-    public int getVotes() {
-        return votes;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setVotes(int votes) {
-        this.votes = votes;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     @Override
     public String toString() {
         return "Restaurant{" +
                 "menu=" + menu +
-                ", votes=" + votes +
+                ", users=" + users +
                 '}';
     }
 }

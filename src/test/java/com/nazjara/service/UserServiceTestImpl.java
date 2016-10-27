@@ -14,22 +14,23 @@ import static com.nazjara.UserTestData.ADMIN;
 import static com.nazjara.UserTestData.MATCHER;
 import static com.nazjara.UserTestData.USER;
 
-public abstract class UserServiceTestImpl extends AbstractServiceTest {
+public class UserServiceTestImpl extends AbstractServiceTest {
 
     @Autowired
     protected UserService service;
 
     @Test
     public void testSave() throws Exception {
-        User newUser = new User(null, "New", "new@gmail.com", "newPass", Collections.singleton(Role.ROLE_USER));
+        User newUser = new User(null, "New", "new@gmail.com", "newPass", Role.ROLE_USER);
         User created = service.save(newUser);
         newUser.setId(created.getId());
-        MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, newUser, USER), service.getAll());
+        MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, USER, newUser), service.getAll());
     }
 
     @Test(expected = DataAccessException.class)
-    public void testDuplicateMailSave() throws Exception {
-        service.save(new User(null, "Duplicate", "user@gmail.com", "newPass", Role.ROLE_USER));
+    public void testDuplicateSave() throws Exception {
+        User duplicateUser = new User(null, "Duplicate", "user@gmail.com", "newPass", Role.ROLE_USER);
+        service.save(duplicateUser);
     }
 
     @Test
@@ -55,7 +56,7 @@ public abstract class UserServiceTestImpl extends AbstractServiceTest {
         User updated = new User(USER);
         updated.setName("UpdatedName");
         updated.setEmail("updated@gmail.com");
-        service.update(updated);
+        service.update(updated, updated.getId());
         MATCHER.assertEquals(updated, service.get(USER.getId()));
     }
 }

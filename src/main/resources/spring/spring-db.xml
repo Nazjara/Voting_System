@@ -53,6 +53,6 @@
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
           p:entityManagerFactory-ref="entityManagerFactory"/>
 
-    <context:component-scan base-package="com.nazjara.repository"/>
-    <jpa:repositories base-package="com.nazjara.repository"/>
+    <context:component-scan base-package="com.nazjara.repository.jpa"/>
+    <!--<jpa:repositories base-package="com.nazjara.repository"/>-->
 </beans>

@@ -2,16 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Restaurants</title>
+    <jsp:include page="fragments/headTag.jsp"/>
 </head>
 <body>
     <h2><a href="${pageContext.request.contextPath}/">Home</a></h2>
     <h3>Restaurant list</h3>
-    <form method="post" action="results">
+    <form method="post" action="users/results">
     <c:forEach items="${restaurants}" var="restaurant">
         <jsp:useBean id="restaurant" scope="page" type="com.nazjara.model.Restaurant"/>
-        <h4>${restaurant.name} - ${restaurant.votes}<input type="radio"
-                                                           name="answer" value="${restaurant.id}"></h4>
+        <h4>${restaurant.name}<input type="radio" name="answer" value="${restaurant.id}"></h4>
         <ul>
             <c:forEach items="${restaurant.menu}" var="meal">
                 <jsp:useBean id="meal" scope="page" type="com.nazjara.model.Meal"/>

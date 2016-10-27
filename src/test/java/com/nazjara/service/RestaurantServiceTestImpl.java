@@ -3,6 +3,7 @@ package com.nazjara.service;
 import com.nazjara.model.Restaurant;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -25,7 +26,13 @@ public class RestaurantServiceTestImpl extends AbstractServiceTest {
         Restaurant newRestaurant = getCreated();
         Restaurant created = service.save(newRestaurant);
         newRestaurant.setId(created.getId());
-        MATCHER.assertCollectionEquals(Arrays.asList(RESTAURANT1,RESTAURANT2,RESTAURANT3,newRestaurant),service.getAll());
+        MATCHER.assertCollectionEquals(Arrays.asList(RESTAURANT1,newRestaurant,RESTAURANT2,RESTAURANT3), service.getAll());
+    }
+
+    @Test(expected = DataAccessException.class)
+    public void testDuplicateSave() throws Exception {
+        Restaurant duplicateRestaurant = new Restaurant(null,"McDonalds");
+        service.save(duplicateRestaurant);
     }
 
     @Test

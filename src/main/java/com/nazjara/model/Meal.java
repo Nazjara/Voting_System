@@ -9,11 +9,11 @@ public class Meal extends BaseEntity
 {
     @Column(name = "price",nullable = false)
     @NotNull
-    private double price;
+    protected double price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
-    private Restaurant restaurant;
+    protected Restaurant restaurant;
 
     public Meal() {
     }

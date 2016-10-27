@@ -5,7 +5,6 @@ import com.nazjara.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -33,5 +32,10 @@ public class DataJpaRestaurantRepositoryImpl implements RestaurantRepository {
     @Override
     public List<Restaurant> getAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public List<Restaurant> getAllWithMenu() {
+        return repository.getAllWithMenu();
     }
 }

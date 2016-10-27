@@ -4,9 +4,6 @@ import com.nazjara.model.Restaurant;
 
 import java.util.List;
 
-/**
- * Created by Administrator on 18.10.2016.
- */
 public interface RestaurantService {
 
     void delete(int id);
@@ -19,5 +16,5 @@ public interface RestaurantService {
 
     List<Restaurant> getAll();
 
-    void addVote(int restaurantId);
+    List<Restaurant> getAllWithMenu();
 }

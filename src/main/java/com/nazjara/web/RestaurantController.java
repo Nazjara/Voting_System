@@ -7,26 +7,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
+@RequestMapping(value = "/restaurants")
 public class RestaurantController {
     @Autowired
     private RestaurantService restaurantService;
 
-    @RequestMapping(value = "/restaurants", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String getAllRestaurantsWithMeals(Model model)
     {
-        model.addAttribute("restaurants",restaurantService.getAll());
+        model.addAttribute("restaurants",restaurantService.getAllWithMenu());
         return "restaurants";
-    }
-
-    @RequestMapping(value = "/results", method = RequestMethod.POST)
-    public String getVoteResults(HttpServletRequest request, Model model)
-    {
-        int restaurantId = Integer.parseInt(request.getParameter("answer"));
-        restaurantService.addVote(restaurantId);
-        model.addAttribute("restaurant",restaurantService.get(restaurantId));
-        return "results";
     }
 }

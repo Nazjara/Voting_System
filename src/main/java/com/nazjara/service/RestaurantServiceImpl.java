@@ -42,7 +42,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void addVote(int restaurantId) {
-        //have to implement
+    public List<Restaurant> getAllWithMenu() {
+        return repository.getAllWithMenu();
     }
 }

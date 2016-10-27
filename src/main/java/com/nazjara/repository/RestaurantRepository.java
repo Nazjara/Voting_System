@@ -13,4 +13,6 @@ public interface RestaurantRepository {
     Restaurant get(Integer id);
 
     List<Restaurant> getAll();
+
+    List<Restaurant> getAllWithMenu();
 }

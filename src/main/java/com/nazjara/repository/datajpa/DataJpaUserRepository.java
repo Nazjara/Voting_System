@@ -11,7 +11,6 @@ import java.util.List;
 @Transactional(readOnly = true)
 public interface DataJpaUserRepository extends JpaRepository<User,Integer>
 {
-
     @Transactional
     @Modifying
     @Query("DELETE FROM User u WHERE u.id=:id")
@@ -25,6 +24,6 @@ public interface DataJpaUserRepository extends JpaRepository<User,Integer>
     User findOne(Integer id);
 
     @Override
-    @Query("SELECT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.name, u.email")
+    @Query("SELECT u FROM User u ORDER BY u.name, u.email")
     List<User> findAll();
 }

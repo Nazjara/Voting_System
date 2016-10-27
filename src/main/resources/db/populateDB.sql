@@ -10,7 +10,8 @@ INSERT INTO users (name, email, password) VALUES
 
 INSERT INTO user_roles (role, user_id) VALUES
   ('ROLE_ADMIN', 1),
-  ('ROLE_USER', 2);
+  ('ROLE_USER', 2),
+  ('ROLE_USER', 1);
 
 INSERT INTO restaurants (name) VALUES
   ('McDonalds'),
@@ -29,4 +30,4 @@ INSERT INTO meals (name, price, restaurant_id) VALUES
   ('Pizza Sub with Cheese', '3.75', 5),
   ('Loaded Baked Potato with Bacon', '2.50', 5),
   ('Apple Slices', '1.50', 5),
-  ('Coffee	16 oz.', '1.80', 5);
+  ('Coffee 16 oz.', '1.80', 5);

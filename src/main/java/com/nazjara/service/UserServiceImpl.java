@@ -2,7 +2,6 @@ package com.nazjara.service;
 
 import com.nazjara.model.User;
 import com.nazjara.repository.UserRepository;
-import com.nazjara.repository.datajpa.DataJpaUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -23,12 +22,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         Assert.notNull(user,"user must not be null");
+        user.setId(null);
         return repository.save(user);
     }
 
     @Override
-    public User update(User user) {
+    public User update(User user, int id) {
         Assert.notNull(user,"user must not be null");
+        user.setId(id);
         return repository.save(user);
     }
 
