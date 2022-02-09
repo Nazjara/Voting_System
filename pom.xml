@@ -30,7 +30,7 @@
         <junit.version>4.12</junit.version>
 
         <!-- Hibernate -->
-        <hibernate.version>5.2.2.Final</hibernate.version>
+        <hibernate.version>5.4.24.Final</hibernate.version>
         <hibernate-validator.version>5.2.5.Final</hibernate-validator.version>
 
     </properties>
